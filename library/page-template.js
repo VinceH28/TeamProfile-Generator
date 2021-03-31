@@ -60,3 +60,27 @@ const createManager = (manager) => {
     `;
 }
 
+// create engineer html
+const createEngineer = (engineer) => {
+    return `
+        <div class="card employee-card">
+        <div class="card-header">
+            <h2 class="card-title">${engineer.getName()}</h2>
+            <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>${engineer.getPosition()}</h3>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item">ID:${engineer.getID()}
+                </li>
+                <li class="list-group-item">
+              Email: <a href="mailto: ${engineer.getEmail()}">${engineer.getEmail}</a>
+            </li>
+            <li class="list-group-item">
+              Github: <a href=""https://github.com/${engineer.getGithub()}">${engineer.getGithub()}</a>
+            </li>
+          </ul>
+        </div>
+    </div>
+    `;
+}
+
