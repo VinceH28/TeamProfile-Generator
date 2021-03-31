@@ -35,4 +35,3 @@ const createTeam = (team) => {
     }
     return html.join(" ")
 }
-
