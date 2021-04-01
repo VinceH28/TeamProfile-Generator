@@ -93,8 +93,8 @@ async function init() {
     team.push(manager);
 
     //loop interating the number of team members chosen & creates new member
-    for (var i = 0; i < managerData.members; i++) {
-        let memberType = await inquirer.prompt([
+    for (var i = 0; i < managerData.employees; i++) {
+        let employeeType = await inquirer.prompt([
             {
                 type: "list",
                 name: "type",
@@ -102,13 +102,13 @@ async function init() {
                 choices: ["Engineer", "Intern"],
             },
         ]);
-        memberType = memberType.type;
+        employeeType = employeeType.type;
         //Employee input initialized via inquirer.prompt
         const employeeData = await inquirer.prompt([
             {
                 type: "input",
                 name: "name",
-                message: `What is the ${memberType}'s name?`,
+                message: `What is the ${employeeType}'s name?`,
                 validate: async (input) => {
                     if (input.length <=0) return "Enter a name";
                     return true;
@@ -117,7 +117,7 @@ async function init() {
             {
                 type: "input",
                 name: "id",
-                message: `What is the team ${memberType}'s id?`,
+                message: `What is the team ${employeeType}'s id?`,
                 validate: async (input) => {
                     if (input > 0) {
                         return true;
@@ -129,7 +129,7 @@ async function init() {
             {
                 type: "input",
                 name: "email",
-                message: `What is the ${memberType}'s email?`,
+                message: `What is the ${employeeType}'s email?`,
                 validate: async (input) => {
                     if (validator.validate(input)) {
                         return true;
@@ -141,12 +141,12 @@ async function init() {
             {
                 type: "input",
                 name: "info",
-                message: `What is the ${memberType}'s ${memberType == "Engineer" ? "GitHub" : "Institution"}?`,
+                message: `What is the ${employeeType}'s ${employeeType == "Engineer" ? "GitHub" : "Institution"}?`,
             },
         ]);
         //Employee constructor with Engineer & Intern
         const employee =
-            memberType == "Engineer"
+            employeeType == "Engineer"
             ? newEngineer(
                 employeeData.name,
                 employeeData.id,
