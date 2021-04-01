@@ -83,3 +83,64 @@ async function init() {
         },   
     ]);
 
+    //manager constructor
+    const manager = newManager(
+        managerData.name,
+        managerData.id,
+        managerData.email,
+        managerData.officeNumber
+    );
+    team.push(manager);
+
+    //loop interating the number of team members chosen & creates new member
+    for (var i = 0; i < managerData.members; i++) {
+        let memberType = await inquirer.prompt([
+            {
+                type: "list",
+                name: "type",
+                message: "Which type of team member would you like to add?",
+                choices: ["Engineer", "Intern"],
+            },
+        ]);
+        memberType = memberType.type;
+        //Employee input initialized via inquirer.prompt
+        const employeeData = await inquirer.prompt([
+            {
+                type: "input",
+                name: "name",
+                message: `What is the ${memberType}'s name?`,
+                validate: async (input) => {
+                    if (input.length <=0) return "Enter a name";
+                    return true;
+                },
+            },
+            {
+                type: "input",
+                name: "id",
+                message: `What is the team ${memberType}'s id?`,
+                validate: async (input) => {
+                    if (input > 0) {
+                        return true;
+                    } else {
+                        return "Enter a NUMBER greater than zero";
+                    }
+                },
+            },
+            {
+                type: "input",
+                name: "email",
+                message: `What is the ${memberType}'s email?`,
+                validate: async (input) => {
+                    if (validator.validate(input)) {
+                        return true;
+                    } else {
+                        return "Enter valid email address";
+                    }
+                },
+            },
+            {
+                type: "input",
+                name: "info",
+                message: `What is the ${memberType}'s ${memberType == "Engineer" ? "GitHub" : "Institution"}?`,
+            },
+        ]);
