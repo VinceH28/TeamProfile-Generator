@@ -144,3 +144,26 @@ async function init() {
                 message: `What is the ${memberType}'s ${memberType == "Engineer" ? "GitHub" : "Institution"}?`,
             },
         ]);
+        //Employee constructor with Engineer & Intern
+        const employee =
+            memberType == "Engineer"
+            ? newEngineer(
+                employeeData.name,
+                employeeData.id,
+                employeeData.email,
+                employeeData.data
+            )
+            : newIntern(
+                employeeData.name,
+                employeeData.id,
+                employeeData.email,
+                employeeData.data
+            );
+        team.push(employee);
+    }
+    //Render input to output directory in html format
+    fs.writeFileSync(outPath, render(team), "utf-8");
+    console.log(`Complete!`);
+}
+//Initialize inquirer prompt
+init();
