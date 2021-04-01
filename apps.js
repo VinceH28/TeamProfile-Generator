@@ -1,17 +1,17 @@
 //import classes
-const Employee = require("./library/employee.js");
-const Manager = require("./library/manager.js");
-const Engineer = require("./library/engineer.js");
-const Intern = require("'/library/intern.js");
+const Employee = require("./library/employee")
+const Manager = require("./library/manager")
+const Engineer = require("./library/engineer")
+const Intern = require("'/library/intern")
 
 //modules
 const inquirer = require('inquirer');
+const fs = require("fs");
 const path = require("path");
 
-//createTeam function
-const createTeam = require("./library/page-template.js");
-const { async } = require("rxjs");
-const { fstat } = require("node:fs");
+//
+const OUTPUT_DIR = path.resolve(__dirname, "output");
+const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 //Push employees to empty list
 let team = [];
@@ -161,8 +161,9 @@ async function init() {
             );
         team.push(employee);
     }
+
     //Render input to output directory in html format
-    fs.writeFileSync(outPath, render(team), "utf-8");
+    fs.writeFileSync(outputPath, render(team), "utf-8");
     console.log(`Complete!`);
 }
 //Initialize inquirer prompt
