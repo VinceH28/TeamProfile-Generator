@@ -2,7 +2,7 @@
 const Employee = require("./library/employee")
 const Manager = require("./library/manager")
 const Engineer = require("./library/engineer")
-const Intern = require("'/library/intern")
+const Intern = require("'./library/intern")
 
 //modules
 const inquirer = require('inquirer');
