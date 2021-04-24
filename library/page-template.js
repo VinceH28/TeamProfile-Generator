@@ -9,17 +9,17 @@ const createTeam = (team) => {
   html.push(
     ...team
       .filter((employee) => employee.getRole() === "Manager")
-      .map((manager) => createTeamManager(manager))
+      .map((manager) => createTeam(manager))
   );
   html.push(
     ...team
       .filter((employee) => employee.getRole() === "Engineer")
-      .map((engineer) => createTeamEngineer(engineer))
+      .map((engineer) => createTeam(engineer))
   );
   html.push(
     ...team
       .filter((employee) => employee.getRole() === "Intern")
-      .map((intern) => createTeamIntern(intern))
+      .map((intern) => createTeam(intern))
   );
   return createTeamMain(html.join(""));
 };
