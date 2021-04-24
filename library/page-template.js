@@ -108,7 +108,7 @@ const createIntern = (intern) => {
 }
 
 // create employee
-const createEmployee = (Employee) => {
+const createEmployee = (employee) => {
     return `
         <div class="card employee-card">
         <div class="card-header">

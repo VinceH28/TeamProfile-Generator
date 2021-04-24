@@ -2,7 +2,7 @@
 const Employee = require("./library/employee")
 const Manager = require("./library/manager")
 const Engineer = require("./library/engineer")
-const Intern = require("'./library/intern")
+const Intern = require("./library/intern")
 
 //modules
 const inquirer = require('inquirer');
@@ -52,7 +52,7 @@ async function init() {
         },
             {
                 type: "input",
-                name: "id",
+                name: "email",
                 message: "What is the team manager's email?",
                 validate: email => {
                     if (email && email.includes("@")) {
@@ -66,7 +66,7 @@ async function init() {
             {
                 type: "input",
                 name: "officeNumber",
-                message: "What is the team manager's phone number?",
+                message: "What is the team manager's office phone number?",
                 validate: async (input) => {
                     if (!phoneNumber(input)) return "Please enter a valid phone number. ";
                     return true;}
@@ -74,7 +74,7 @@ async function init() {
         
             {
                 type: "input",
-                name: "members",
+                name: "employees",
                 message: "How many team members are there?",
                 validate: async (input) => {
                     if (Number(input) <= 0) return "Please add a team member";
@@ -84,7 +84,7 @@ async function init() {
     ]);
 
     //manager constructor
-    const manager = newManager(
+    const manager = new Manager(
         managerData.name,
         managerData.id,
         managerData.email,
@@ -131,11 +131,11 @@ async function init() {
                 name: "email",
                 message: `What is the ${employeeType}'s email?`,
                 validate: async (input) => {
-                    if (validator.validate(input)) {
+                    if (input && input.includes("@")) {
                         return true;
                     } else {
-                        return "Enter valid email address";
-                    }
+                      console.log("Please enter a valid email address")}
+                    return false
                 },
             },
             {
@@ -161,7 +161,6 @@ async function init() {
             );
         team.push(employee);
     }
-
     //Render input to output directory in html format
     fs.writeFileSync(outputPath, render(team), "utf-8");
     console.log(`Complete!`);
