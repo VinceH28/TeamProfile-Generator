@@ -147,17 +147,17 @@ async function init() {
         //Employee constructor with Engineer & Intern
         const employee =
             employeeType == "Engineer"
-            ? newEngineer(
+            ? new Engineer(
                 employeeData.name,
                 employeeData.id,
                 employeeData.email,
-                employeeData.data
+                employeeData.info
             )
-            : newIntern(
+            : new Intern(
                 employeeData.name,
                 employeeData.id,
                 employeeData.email,
-                employeeData.data
+                employeeData.info
             );
         team.push(employee);
     }
