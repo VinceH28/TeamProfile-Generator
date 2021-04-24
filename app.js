@@ -162,7 +162,7 @@ async function init() {
         team.push(employee);
     }
     //Render input to output directory in html format
-    fs.writeFileSync(outputPath, render(team), "utf-8");
+    fs.writeFileSync(outputPath, createTeam(team), "utf-8");
     console.log(`Complete!`);
 }
 //Initialize inquirer prompt
